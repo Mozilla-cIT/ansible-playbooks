@@ -1,4 +1,5 @@
-This document assumes you have access to IAM, and know how to do the basics with it. You will need an AWS access ID and secret key, with read-only access. Since it'll be looking at EC2, RDS, ElastiCache, and Route 53, we can give it read-only to the whole account. Do ***not*** use your personal key.
+This document assumes you have access to IAM, and know how to do the basics with it. You will need an AWS access ID and secret key, with read-only access. Right now it'll only look at EC2 instances, so that's all it'll have read-only access to.  Do ***not*** use your personal key.
+
 
 ## Setting up the master server
 
@@ -30,7 +31,7 @@ aws_access_key_id = <your_access_key_here>
 aws_secret_access_key = <your_secret_key_here>
 ```
 
-Remember, for god's sake, **DON'T USE YOUR PERSONAL ACCESS KEYS**
+Remember, **DON'T USE YOUR PERSONAL ACCESS KEYS**
 
 
 And now finally, we're going to clone our Ansible repo.
