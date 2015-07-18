@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/Mozilla-cIT/ansible-playbooks.svg?branch=master)](https://travis-ci.org/Mozilla-cIT/ansible-playbooks)
+
+
 This document assumes you have access to IAM, and know how to do the basics with it. You will need an AWS access ID and secret key, with read-only access. Right now it'll only look at EC2 instances, so that's all it'll have read-only access to.  Do ***not*** use your personal key.
 
 
