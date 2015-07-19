@@ -1,0 +1,52 @@
+---
+  - name: Create core team accounts
+    - user:
+      name=leo # Name of user
+      groups=sudo # Groups to include user in. Comma-seperated, if multiple.
+      append=yes # Append groups, don't replace.
+    - user:
+      name=logan
+      groups=sudo
+      append=yes
+    - user:
+      name=mrz
+      groups=sudo
+      append=yes
+    - user:
+      name=tad
+      groups=sudo
+      append=yes
+    - user:
+      name=tanner
+      groups=sudo
+      shell=/bin/zsh
+      append=yes
+    - user:
+      name=yousef
+      groups=sudo
+      append=yes
+
+  - name: Install ssh keys for core team
+    authorized_keys:
+      user=leo
+      https://github.com/leomca.keys
+
+    authorized_keys:
+      user=logan
+      key=https://launchpad.net/~logan/+sshkeys
+
+    authorized_keys:
+      user=mrz
+      key=https://github.com/mzeier.keys
+
+    authorized_keys:
+      user=tad
+      key=https://github.com/thomasfarrow.keys
+
+    authorized_keys:
+      user=tanner
+      key=https://github.com/tannerfilip.keys
+
+    authorized_keys:
+      user=yousef
+      key=https://github.com/flamingspaz.keys
