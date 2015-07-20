@@ -29,7 +29,7 @@
   - name: Install ssh keys for core team
     authorized_key:
       user=leo
-      https://github.com/leomca.keys
+      key=https://github.com/leomca.keys
 
     authorized_key:
       user=logan
