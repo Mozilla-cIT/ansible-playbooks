@@ -1,29 +1,29 @@
 ---
   - name: Create core team accounts
-    - user:
-      name=leo # Name of user
-      groups=sudo # Groups to include user in. Comma-seperated, if multiple.
-      append=yes # Append groups, don't replace.
-    - user:
+    user:
+      name=leo
+      group=sudo
+      append=yes
+    user:
       name=logan
-      groups=sudo
+      group=sudo
       append=yes
-    - user:
+    user:
       name=mrz
-      groups=sudo
+      group=sudo
       append=yes
-    - user:
+    user:
       name=tad
-      groups=sudo
+      group=sudo
       append=yes
-    - user:
+    user:
       name=tanner
-      groups=sudo
+      group=sudo
       shell=/bin/zsh
       append=yes
-    - user:
+    user:
       name=yousef
-      groups=sudo
+      group=sudo
       append=yes
 
   - name: Install ssh keys for core team

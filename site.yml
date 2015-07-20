@@ -1,8 +1,8 @@
 ---
 # Deploy base stuff on all servers
 - hosts: all
- remote-user: root
- roles:
+  remote_user: root
+  roles:
    - common
 
 # Discourse stuff
