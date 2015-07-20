@@ -6,11 +6,11 @@
    - common
 
 # Discourse stuff
-- hosts: tag_app_discourse
-  roles:
-    - discourse
+#- hosts: tag_app_discourse
+#  roles:
+#    - discourse
 
 # znc stuff
-- hosts: tag_app_znc
-  roles:
-    - znc
+#- hosts: tag_app_znc
+#  roles:
+#    - znc

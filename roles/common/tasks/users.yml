@@ -27,26 +27,26 @@
       append=yes
 
   - name: Install ssh keys for core team
-    authorized_keys:
+    authorized_key:
       user=leo
       https://github.com/leomca.keys
 
-    authorized_keys:
+    authorized_key:
       user=logan
       key=https://launchpad.net/~logan/+sshkeys
 
-    authorized_keys:
+    authorized_key:
       user=mrz
       key=https://github.com/mzeier.keys
 
-    authorized_keys:
+    authorized_key:
       user=tad
       key=https://github.com/thomasfarrow.keys
 
-    authorized_keys:
+    authorized_key:
       user=tanner
       key=https://github.com/tannerfilip.keys
 
-    authorized_keys:
+    authorized_key:
       user=yousef
       key=https://github.com/flamingspaz.keys
