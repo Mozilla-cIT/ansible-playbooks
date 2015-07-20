@@ -3,11 +3,12 @@ python: '2.7'
 sudo: false
 install:
 - pip install ansible
+- rm ./ansible.cfg
 - echo -e 'localhost  ansible_connection=local' > ./roles/tests/inventory
 - echo -e '[defaults]\nroles_path = ../\nhostfile = ./roles/tests/inventory' > ansible.cfg
 script:
-- ansible-playbook -i roles/tests/inventory roles/tests/test.yml --syntax-check
-- ansible-playbook -i roles/tests/inventory roles/tests/test.yml
+- ansible-playbook -i roles/tests/inventory site.yml --syntax-check
+- ansible-playbook -i roles/tests/inventory site.yml 
 notifications:
   email: false
 #  slack:
