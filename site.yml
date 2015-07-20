@@ -1,7 +1,7 @@
 ---
 # Deploy base stuff on all servers
 - hosts: all
-  remote_user: root
+  remote_user: ubuntu
   roles:
    - common
 
