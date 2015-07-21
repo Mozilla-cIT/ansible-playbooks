@@ -1,0 +1,5 @@
+---
+- name: ami and autoscale update
+  command: >
+  	echo "Not implemented yet"
+  run_once: true
