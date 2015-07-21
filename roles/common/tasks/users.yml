@@ -4,18 +4,22 @@
       name=leo
       group=sudo
       append=yes
+      shell=/bin/zsh
     user:
       name=logan
       group=sudo
       append=yes
+      shell=/bin/bash
     user:
       name=mrz
       group=sudo
       append=yes
+      shell=/bin/tcsh
     user:
       name=tad
       group=sudo
       append=yes
+      shell=/bin/bash
     user:
       name=tanner
       group=sudo
@@ -25,6 +29,7 @@
       name=yousef
       group=sudo
       append=yes
+      shell=/bin/bash
 
   - name: Install ssh keys for core team
     authorized_key:
