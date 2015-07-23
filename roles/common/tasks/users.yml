@@ -1,31 +1,31 @@
 ---
   - name: Create core team accounts
-    - user:
+    user:
       name=leo
       group=sudo
       append=yes
       shell=/bin/zsh
-    - user:
+    user:
       name=logan
       group=sudo
       append=yes
       shell=/bin/bash
-    - user:
+    user:
       name=mrz
       group=sudo
       append=yes
       shell=/bin/tcsh
-    - user:
+    user:
       name=tad
       group=sudo
       append=yes
       shell=/bin/bash
-    - user:
+    user:
       name=tanner
       group=sudo
       shell=/bin/zsh
       append=yes
-    - user:
+    user:
       name=yousef
       group=sudo
       append=yes
