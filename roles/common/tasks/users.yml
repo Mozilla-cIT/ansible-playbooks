@@ -1,10 +1,7 @@
 ---
   - name: Create core team accounts
     user:
-      name: "{{ item.name }}"
-      group: sudo
-      append: yes
-      shell: "{{ item.shell }}"
+    - name="{{ item.name }}"group=sudo append=yes shell="{{ item.shell }}"
       with_items:
         - { 'name':'leo', 'shell':'/bin/zsh'}
         - { 'name':'logan', 'shell':'/bin/bash'}
@@ -17,8 +14,7 @@
 
   - name: Install ssh keys for core team
     authorized_key:
-      user: "{{ item.user }}"
-      key: "{{ item.key }}"
+      user="{{ item.user }}" key="{{ item.key }}"
       with_items:
         - { 'name':'leo','key':'https://github.com/leomca.keys'}
         - { 'name':'logan','key':'https://launchpad.net/~logan/+sshkeys'}
