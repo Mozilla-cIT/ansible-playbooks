@@ -1,23 +1,21 @@
 ---
   - name: Create core team accounts
-    user:
-    - name="{{ item.name }}"group=sudo append=yes shell="{{ item.shell }}"
-      with_items:
-        - { 'name':'leo', 'shell':'/bin/zsh'}
-        - { 'name':'logan', 'shell':'/bin/bash'}
-        - { 'name':'mrz', 'shell':'/bin/tcsh'}
-        - { 'name':'tanner', 'shell':'/bin/zsh'}
-        - { 'name':'yousef', 'shell':'/bin/zsh'}
+    user: name="{{ item.name }}" group=sudo append=yes shell="{{ item.shell }}"
+    with_items:
+      - { 'name':'leo', 'shell':'/bin/zsh' }
+      - { 'name':'logan', 'shell':'/bin/bash' }
+      - { 'name':'mrz', 'shell':'/bin/tcsh' }
+      - { 'name':'tanner', 'shell':'/bin/zsh' }
+      - { 'name':'yousef', 'shell':'/bin/zsh' }
 
 
 
 
   - name: Install ssh keys for core team
-    authorized_key:
-      user="{{ item.user }}" key="{{ item.key }}"
-      with_items:
-        - { 'name':'leo','key':'https://github.com/leomca.keys'}
-        - { 'name':'logan','key':'https://launchpad.net/~logan/+sshkeys'}
-        - { 'name':'mrz','key':'https://github.com/mzeier.keys'}
-        - { 'name':'tanner','key':'https://github.com/tannerfilip.keys'}
-        - { 'name':'yousef','key':'https://github.com/flamingspaz.keys'}
+    authorized_key: user="{{ item.user }}" key="{{ item.key }}"
+    with_items:
+      - { 'name':'leo','key':'https://github.com/leomca.keys' }
+      - { 'name':'logan','key':'https://launchpad.net/~logan/+sshkeys' }
+      - { 'name':'mrz','key':'https://github.com/mzeier.keys' }
+      - { 'name':'tanner','key':'https://github.com/tannerfilip.keys' }
+      - { 'name':'yousef','key':'https://github.com/flamingspaz.keys' }
