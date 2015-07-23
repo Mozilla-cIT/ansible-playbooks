@@ -4,27 +4,27 @@
       name=leo
       group=sudo
       append=yes
-      shell=/bin/zsh
+      shell=/bin/zsh,
     user:
       name=logan
       group=sudo
       append=yes
-      shell=/bin/bash
+      shell=/bin/bash,
     user:
       name=mrz
       group=sudo
       append=yes
-      shell=/bin/tcsh
+      shell=/bin/tcsh,
     user:
       name=tad
       group=sudo
       append=yes
-      shell=/bin/bash
+      shell=/bin/bash,
     user:
       name=tanner
       group=sudo
       shell=/bin/zsh
-      append=yes
+      append=yes,
     user:
       name=yousef
       group=sudo
