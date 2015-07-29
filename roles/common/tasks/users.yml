@@ -5,6 +5,7 @@
       - { 'name':'leo', 'shell':'/bin/zsh' }
       - { 'name':'logan', 'shell':'/bin/bash' }
       - { 'name':'mrz', 'shell':'/bin/tcsh' }
+      - { 'name':'tad', 'shell':/bin/zsh'}
       - { 'name':'tanner', 'shell':'/bin/zsh' }
       - { 'name':'yousef', 'shell':'/bin/zsh' }
 
@@ -17,5 +18,6 @@
       - { 'user':'leo','key':'https://github.com/leomca.keys' }
       - { 'user':'logan','key':'https://launchpad.net/~logan/+sshkeys' }
       - { 'user':'mrz','key':'https://github.com/mzeier.keys' }
+      - { 'user':'tad', 'key':'https://github.com/thomasfarrow.keys'}
       - { 'user':'tanner','key':'https://github.com/tannerfilip.keys' }
       - { 'user':'yousef','key':'https://github.com/flamingspaz.keys' }
