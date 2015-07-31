@@ -6,11 +6,11 @@
   roles:
    - common
 
- - hosts: tag_app_zabbix
-   remote_user: ubuntu
-   sudo: yes
-   roles:
-     - zabbix
+- hosts: tag_app_zabbix
+  remote_user: ubuntu
+  sudo: yes
+  roles:
+   - zabbix
 
 # Discourse stuff
 #- hosts: tag_app_discourse
