@@ -1,3 +1,4 @@
 ---
   tasks:
     apt: name=zsh state=present
+    apt: name=tsch state=present
