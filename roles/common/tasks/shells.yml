@@ -1,4 +1,4 @@
 ---
   - name: Install shells
     apt: name=zsh state=present
-    apt: name=tsch state=present
+    apt: name=tcsh state=present
