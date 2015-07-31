@@ -1,0 +1,11 @@
+---
+  - name: Create Zabbix team accounts
+    user: name="{{ item.name }}" group=sudo append=yes shell="{{ item.shell }}"
+    with_items:
+      - { 'name':'sam', 'shell':'/bin/zsh' }
+
+
+  - name: Install ssh keys for Zabbix team
+    authorized_key: user="{{ item.user }}" key="{{ item.key }}"
+    with_items:
+      - { 'user':'sam','key':'https://github.com/samuelmoraesf.keys' }
