@@ -1,5 +1,8 @@
 ---
   - name: Create core team accounts
+    dependencies:
+      - { role: shells }
+      
     user: name="{{ item.name }}" group=sudo append=yes shell="{{ item.shell }}"
     with_items:
       - { 'name':'leo', 'shell':'/bin/zsh' }
