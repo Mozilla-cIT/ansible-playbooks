@@ -2,5 +2,5 @@
   - name: Install shells
     apt: name="{{ item.packages }}" state=present
     with_items:
-      - {'package':'zsh'}
-      - {'package':'tcsh'}
+      - {'packages':'zsh'}
+      - {'packages':'tcsh'}
