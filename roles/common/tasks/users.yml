@@ -3,7 +3,7 @@
     dependencies:
       - { role: shells }
 
-    user: name="{{ item.name }}" group=sudo append=yes shell="{{ item.shell }}"
+    user: name="{{ item.name }}" groups=core-team,sudo append=yes shell="{{ item.shell }}"
     with_items:
       - { 'name':'leo', 'shell':'/bin/zsh' }
       - { 'name':'logan', 'shell':'/bin/bash' }
@@ -14,7 +14,6 @@
 
 
 
-# Stolen from http://companionway.net/2015/04/17/post1/ because it looks pretty sane
   - name: Install ssh keys for core team
     authorized_key: user="{{ item.user }}" key="{{ item.key }}"
     with_items:
@@ -25,16 +24,5 @@
       - { 'user':'tanner','key':'https://github.com/tannerfilip.keys' }
       - { 'user':'yousef','key':'https://github.com/flamingspaz.keys' }
 
-  - name: Copy sudoers for safety
-    command: cp /etc/sudoers /etc/sudoers.tmp
-
-  - name: Create sudoers.bak
-    command: cp /etc/sudoers /etc/sudoers.bak
-
-  - name: Ensure admin group is in sudoers with NOPASSWD
-    lineinfile: "dest=/etc/sudoers.tmp state=present regexp='^%admin ' line='%admin ALL=(ALL) NOPASSWD: ALL' validate='visudo -cf %s'"
-    register: sudoers_tmp_ok
-
-  - name: Copy sudoers.tmp to sudoers
-    when: sudoers_tmp_ok|success
-    command: cp /etc/sudoers.tmp /etc/sudoers
+  - name: Setup passwordless sudo
+    template: src=templates/core-sudoers.j2 dest=/etc/sudoers.d/core-sudoers validate='visudo -cf %s' backup=yes
