@@ -15,9 +15,9 @@
   - name: Install ssh keys for core team
     authorized_key: user="{{ item.user }}" key="{{ item.key }}"
     with_items:
-      - { 'user':'leo','key':https://github.com/leomca.keys }
-      - { 'user':'logan','key':https://launchpad.net/~logan/+sshkeys }
-      - { 'user':'mrz','key':https://github.com/mzeier.keys }
-      - { 'user':'tad', 'key':https://github.com/thomasfarrow.keys}
-      - { 'user':'tanner','key':https://github.com/tannerfilip.keys }
-      - { 'user':'yousef','key':https://github.com/flamingspaz.keys }
+      - { 'user':'leo','key':'https://github.com/leomca.keys' }
+      - { 'user':'logan','key':'https://launchpad.net/~logan/+sshkeys' }
+      - { 'user':'mrz','key':'https://github.com/mzeier.keys' }
+      - { 'user':'tad', 'key':'https://github.com/thomasfarrow.keys'}
+      - { 'user':'tanner','key':'https://github.com/tannerfilip.keys' }
+      - { 'user':'yousef','key':'https://github.com/flamingspaz.keys' }
