@@ -15,6 +15,7 @@
 - hosts: tag_app_megadiscourse
   remote_user: ubuntu
   sudo: yes
+  serial: 1
   roles:
    - discourse
 
