@@ -3,7 +3,7 @@
 - include: "update.yml"
 - include: "aws_ami.yml"
 
-- hosts: discourse
+- hosts: megadiscourse
   - name: check if discourse already exists
   	stat: /var/discourse
   	register: check_discourse
