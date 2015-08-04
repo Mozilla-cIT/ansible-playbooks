@@ -12,11 +12,11 @@
   roles:
    - zabbix
 
- - hosts: tag_app_megadiscourse
-   remote_user: ubuntu
-   sudo: yes
-   roles:
-     - discourse
+- hosts: tag_app_megadiscourse
+  remote_user: ubuntu
+  sudo: yes
+  roles:
+   - discourse
 
 
 # znc stuff
