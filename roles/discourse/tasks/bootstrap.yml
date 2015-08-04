@@ -1,0 +1,29 @@
+---
+- name: update server
+  apt: update_cache=yes
+
+- name: upgrade server
+  apt: upgrade=safe
+
+- name: make discourse folder
+  file: path=/var/discourse state=directory owner=root group=root
+  when: not check_discourse.stat.exists
+
+- name: clone git repo
+  git: repo=git@github.com:discourse/discourse_docker.git dest=/var/discourse
+  sudo: true
+
+# need to figure out how were gonna store secrets
+#- name: copy conifg
+#  copy: src=/opt/apps/discourse/app.yml dest=/var/discourse/containers/app.yml owner=root group=root
+- name: copy conifg
+  copy: src=/var/discourse/samples/web_only.yml dest=/var/discourse/containers/app.yml owner=root group=root
+  sudo: true
+
+- name: launcher bootstrap
+  command: /var/discourse/launcher bootstrap app
+  sudo: true
+
+- name: start discourse
+  command: /var/discourse/launcher start app
+  sudo: true
