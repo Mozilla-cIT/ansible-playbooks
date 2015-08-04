@@ -1,8 +1,7 @@
 ---
 - tasks:
+  
   include: "bootstrap.yml"
-  include: "update.yml"
+
+  #include: "update.yml"
   #include: "aws_ami.yml"
-  name: check if discourse already exists
-  stat: /var/discourse
-  register: check_discourse

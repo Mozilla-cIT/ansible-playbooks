@@ -1,4 +1,15 @@
 ---
+- debug: msg="bootstrapping"
+- name: check if discourse already exists
+  stat: path=/var/discourse
+  register: check_discourse
+
+- include_vars: staging.yml
+  when: env == "staging"
+
+- include_vars: production.yml
+  when: env == "production"
+
 - name: update server
   apt: update_cache=yes
 
@@ -9,21 +20,51 @@
   file: path=/var/discourse state=directory owner=root group=root
   when: not check_discourse.stat.exists
 
-- name: clone git repo
-  git: repo=git@github.com:discourse/discourse_docker.git dest=/var/discourse
-  sudo: true
+- name: install packages
+  apt: name="{{ item.packages }}" state=present
+  with_items:
+    - {'packages':'git'}
 
-# need to figure out how were gonna store secrets
-#- name: copy conifg
-#  copy: src=/opt/apps/discourse/app.yml dest=/var/discourse/containers/app.yml owner=root group=root
-- name: copy conifg
-  copy: src=/var/discourse/samples/web_only.yml dest=/var/discourse/containers/app.yml owner=root group=root
+- name: add docker key
+  apt_key:
+    id: "A88D21E9"
+    url: "http://get.docker.io/gpg"
+    state: present
+
+- name: add docker repo
+  apt_repository:
+    repo: "deb https://get.docker.com/ubuntu docker main"
+    update_cache: yes
+    state: present
+
+- name: install docker
+  apt:
+    name: "lxc-docker"
+    state: "present"
+    update_cache: yes
+
+- name: clone git repo
+  git: repo=https://github.com/discourse/discourse_docker.git dest=/var/discourse
   sudo: true
+  when: not check_discourse.stat.exists
+
+- name: create discourse configs
+  template: src=app.j2 dest=/var/discourse/containers/{{item.name}}.yml owner=root group=root
+  sudo: true
+  with_items: discourse_instances
+
+- name: start docker
+  service:
+    name: docker
+    state: started
+    enabled: yes
 
 - name: launcher bootstrap
-  command: /var/discourse/launcher bootstrap app
+  command: /var/discourse/launcher bootstrap {{item.name}}
   sudo: true
+  with_items: discourse_instances
 
 - name: start discourse
-  command: /var/discourse/launcher start app
+  command: /var/discourse/launcher start {{item.name}}
   sudo: true
+  with_items: discourse_instances
