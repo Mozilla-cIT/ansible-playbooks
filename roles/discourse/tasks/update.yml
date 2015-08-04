@@ -1,0 +1,5 @@
+---
+- name: update discourse
+  sudo: true
+  serial: 1
+  command: /var/discourse/launcher rebuild app 
