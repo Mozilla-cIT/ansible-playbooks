@@ -1,6 +1,4 @@
 ---
 - name: update discourse
-  dependencies:
-   - { 'role':'bootstrap' }
   sudo: true
   command: /var/discourse/launcher rebuild app
