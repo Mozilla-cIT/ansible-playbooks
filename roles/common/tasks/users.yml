@@ -1,6 +1,6 @@
 ---
   - name: Create core team accounts
-    user: name="{{ item.name }}" groups=core-team,sudo append=yes shell="{{ item.shell }}"
+    user: name="{{ item.name }}" groups=sudo append=yes shell="{{ item.shell }}"
     with_items:
       - { 'name':'leo', 'shell':'/bin/zsh' }
       - { 'name':'logan', 'shell':'/bin/bash' }
