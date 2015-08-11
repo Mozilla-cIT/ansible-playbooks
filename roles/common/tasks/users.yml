@@ -1,6 +1,9 @@
 ---
+  - name: Create core team groups
+    group: name=core-team state=present
+
   - name: Create core team accounts
-    user: name="{{ item.name }}" groups=sudo append=yes shell="{{ item.shell }}"
+    user: name="{{ item.name }}" groups=sudo,core-team append=yes shell="{{ item.shell }}"
     with_items:
       - { 'name':'leo', 'shell':'/bin/zsh' }
       - { 'name':'logan', 'shell':'/bin/bash' }
@@ -21,5 +24,5 @@
       - { 'user':'tanner','key':'https://github.com/tannerfilip.keys' }
       - { 'user':'yousef','key':'https://github.com/flamingspaz.keys' }
 
-#  - name: Setup passwordless sudo
-#    template: src=../../../templates/core-sudoers.j2 dest=/etc/sudoers.d/core-sudoers
+  - name: Setup passwordless sudo
+    template: src=../../../templates/core-sudoers.j2 dest=/etc/sudoers.d/core-sudoers
