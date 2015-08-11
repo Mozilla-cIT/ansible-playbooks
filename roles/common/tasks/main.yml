@@ -1,4 +1,3 @@
 ---
-  - tasks:
-    include: users.yml
-    include: shells.yml
+- include: shells.yml
+- include: users.yml
