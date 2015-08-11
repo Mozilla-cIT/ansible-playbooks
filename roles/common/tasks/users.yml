@@ -8,10 +8,6 @@
       - { 'name':'tad', 'shell':/bin/zsh'}
       - { 'name':'tanner', 'shell':'/bin/zsh' }
       - { 'name':'yousef', 'shell':'/bin/zsh' }
-
-
-
-  - name: Install ssh keys for core team
     authorized_key: user="{{ item.user }}" key="{{ item.key }}"
     with_items:
       - { 'user':'leo','key':'https://github.com/leomca.keys' }
