@@ -1,5 +1,12 @@
 ---
 - debug: msg="updating"
-- name: update discourse
+- include_vars: staging.yml
+  when: env == "staging"
+
+- include_vars: production.yml
+  when: env == "production"
+
+- name: rebuild instances
+  command: /var/discourse/launcher rebuild {{item.name}}
   sudo: true
-  command: /var/discourse/launcher rebuild app
+  with_items: discourse_instances

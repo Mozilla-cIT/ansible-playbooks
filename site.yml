@@ -15,7 +15,6 @@
 - hosts: tag_app_megadiscourse:&tag_env_production
   remote_user: ubuntu
   sudo: yes
-  serial: 1
   roles:
    - discourse
   vars:
@@ -24,7 +23,6 @@
 - hosts: tag_app_megadiscourse:&tag_env_staging
   remote_user: ubuntu
   sudo: yes
-  serial: 1
   roles:
    - discourse
   vars:
