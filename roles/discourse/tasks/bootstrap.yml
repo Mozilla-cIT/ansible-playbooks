@@ -1,29 +1,66 @@
 ---
+- debug: msg="bootstrapping"
+- name: check if discourse already exists
+  stat: path=/var/discourse
+  register: check_discourse
+
+- include_vars: staging.yml
+  when: env == "staging"
+
+- include_vars: production.yml
+  when: env == "production"
+
 - name: update server
   apt: update_cache=yes
-
+  when: not check_discourse.stat.exists
 - name: upgrade server
   apt: upgrade=safe
+  when: not check_discourse.stat.exists
 
 - name: make discourse folder
   file: path=/var/discourse state=directory owner=root group=root
   when: not check_discourse.stat.exists
 
+- name: install packages
+  apt: name="{{ item.packages }}" state=present
+  with_items:
+    - {'packages':'git'}
+  when: not check_discourse.stat.exists
+
+- name: add docker key
+  command: apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+  sudo: true
+#  when: not check_discourse.stat.exists
+
+- name: add docker repo
+  apt_repository:
+    repo: "deb https://apt.dockerproject.org/repo ubuntu-trusty main"
+    update_cache: yes
+    state: present
+#  when: not check_discourse.stat.exists
+
+- name: install docker
+  apt:
+    name: "docker-engine"
+    state: "present"
+    update_cache: yes
+  when: not check_discourse.stat.exists
+
 - name: clone git repo
-  git: repo=git@github.com:discourse/discourse_docker.git dest=/var/discourse
+  git: repo=https://github.com/discourse/discourse_docker.git dest=/var/discourse
   sudo: true
+  when: not check_discourse.stat.exists
 
-# need to figure out how were gonna store secrets
-#- name: copy conifg
-#  copy: src=/opt/apps/discourse/app.yml dest=/var/discourse/containers/app.yml owner=root group=root
-- name: copy conifg
-  copy: src=/var/discourse/samples/web_only.yml dest=/var/discourse/containers/app.yml owner=root group=root
-  sudo: true
+- name: start docker
+  service:
+    name: docker
+    state: started
+    enabled: yes
+  when: not check_discourse.stat.exists
 
-- name: launcher bootstrap
-  command: /var/discourse/launcher bootstrap app
+- name: create discourse configs
+  template: src=app.j2 dest=/var/discourse/containers/{{item.name}}.yml owner=root group=root
   sudo: true
-
-- name: start discourse
-  command: /var/discourse/launcher start app
-  sudo: true
+  with_items: discourse_instances
+  notify: bootstrap instances
+  notify: start instances

@@ -12,13 +12,21 @@
   roles:
    - zabbix
 
-- hosts: tag_app_megadiscourse
+- hosts: tag_app_megadiscourse:&tag_env_production
   remote_user: ubuntu
   sudo: yes
-  serial: 1
   roles:
    - discourse
+  vars:
+    env: "production"
 
+- hosts: tag_app_megadiscourse:&tag_env_staging
+  remote_user: ubuntu
+  sudo: yes
+  roles:
+   - discourse
+  vars:
+    env: "staging"
 
 # znc stuff
 #- hosts: tag_app_znc

@@ -1,8 +1,17 @@
 ---
 - tasks:
-  include: "bootstrap.yml"
-  include: "update.yml"
+
+  include: bootstrap.yml
+
+  include: update.yml tags=update
+
   #include: "aws_ami.yml"
-  name: check if discourse already exists
-  stat: /var/discourse
-  register: check_discourse
+  handlers:
+  - name: bootstrap instances
+    command: /var/discourse/launcher bootstrap {{item.name}}
+    sudo: true
+    with_items: discourse_instances
+  - name: start instances
+    command: /var/discourse/launcher start {{item.name}}
+    sudo: true
+    with_items: discourse_instances

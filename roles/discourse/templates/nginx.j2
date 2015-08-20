@@ -1,0 +1,23 @@
+server {
+  listen         80;
+  server_name    {{ item.DISCOURSE_HOSTNAME }};
+  location / {
+    proxy_pass http://127.0.0.1:{{item.http_port}};
+    proxy_set_header Host      $host;
+    proxy_set_header X-Real-IP $remote_addr;
+  }
+}
+
+#server {
+#  listen 443 ssl;
+#  server_name {{ item.DISCOURSE_HOSTNAME }};
+#  ssl on;
+#  ssl_certificate  /etc/ssl/nginx/{{ item.name }}.crt;
+#  ssl_certificate_key  /etc/ssl/nginx/{{ item.name }}.key;
+#  location / {
+#    proxy_pass http://127.0.0.1:{{item.http_port}};
+#    proxy_set_header Host      $host;
+#    proxy_set_header X-Real-IP $remote_addr;
+#  }
+
+#}
