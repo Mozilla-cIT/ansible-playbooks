@@ -27,6 +27,11 @@
    - discourse
   vars:
     env: "staging"
+- hosts: tag_app_ansible
+  remote_user: ubuntu
+  sudo: yes
+  roles:
+   - jenkins
 
 # znc stuff
 #- hosts: tag_app_znc
