@@ -1,0 +1,6 @@
+---
+  - name: Create Jenkins user for Ansible
+    user: name=jenkins
+
+  - name: Add ssh key to Jenkins user
+    authorized_key: user=jenkins key="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCvbXB8t3xrZmw8lvdBQGTm5SelmYdswQaNva6lOPm4VHRU5vyuzFuE6VXifrzPQM4xBiMoikE8ByrfXJTxGEKN07nbovdoKeIsg66okZx/VTz6W/KWzid3DppiK4oxpYw15vF/Ix6rqTcIk+tRlazhc5uIoRmCNgBiCxoiMzb66geV46haOihQXEWryv1qwhtSXtPGhsrSSUox5i7VgIXND6Tk06psgMrYoK60HeCu6qjoH2ZI1j2kRLg+G+5cnAOlnIYjA3NnCJSZN1oOhPg53d0bf2Ye8GpTGV7J27XEM/VBKis5oE+u1K+d2hk7v0vKK9KcBqPXOCmo68lV+mh5"
