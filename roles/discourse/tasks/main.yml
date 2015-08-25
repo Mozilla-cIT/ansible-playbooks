@@ -3,15 +3,6 @@
 
   include: bootstrap.yml
 
-  include: update.yml tags=update
+  #include: update.yml tags=update
 
   #include: "aws_ami.yml"
-  handlers:
-  - name: bootstrap instances
-    command: /var/discourse/launcher bootstrap {{item.name}}
-    sudo: true
-    with_items: discourse_instances
-  - name: start instances
-    command: /var/discourse/launcher start {{item.name}}
-    sudo: true
-    with_items: discourse_instances

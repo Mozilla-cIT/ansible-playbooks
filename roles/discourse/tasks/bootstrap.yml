@@ -62,5 +62,13 @@
   template: src=app.j2 dest=/var/discourse/containers/{{item.name}}.yml owner=root group=root
   sudo: true
   with_items: discourse_instances
-  notify: bootstrap instances
-  notify: start instances
+
+- name: bootstrap instances
+  command: /var/discourse/launcher bootstrap {{item.name}}
+  sudo: true
+  with_items: discourse_instances
+
+- name: start instances
+  command: /var/discourse/launcher start {{item.name}}
+  sudo: true
+  with_items: discourse_instances
