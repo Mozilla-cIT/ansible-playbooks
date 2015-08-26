@@ -43,7 +43,7 @@ env:
   ##
   ## The CDN address for this Discourse instance (configured to pull)
   #DISCOURSE_CDN_URL: //discourse-cdn.example.com
-  {%+ for item in item.extra_vars %}
+  {% for item in item.extra_vars %}
   {{ item }}
 
   {% endfor %}
@@ -71,7 +71,7 @@ hooks:
         cmd:
           - mkdir -p plugins
           - git clone https://github.com/discourse/docker_manager.git
-          {%+ for item in item.extra_plugins %}
+          {% for item in item.extra_plugins %}
           - git clone {{ item }}
           {% endfor %}
 
