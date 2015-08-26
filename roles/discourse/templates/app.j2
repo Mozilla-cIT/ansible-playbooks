@@ -45,6 +45,7 @@ env:
   #DISCOURSE_CDN_URL: //discourse-cdn.example.com
   {% for item in item.extra_vars -%}
   {{ item }}
+  
   {%- endfor %}
 
 volumes:
