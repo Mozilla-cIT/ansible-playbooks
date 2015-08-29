@@ -27,6 +27,24 @@
    - discourse
   vars:
     env: "staging"
+
+- hosts: tag_app_discourse:&tag_env_production
+  remote_user: ubuntu
+  sudo: yes
+  roles:
+   - discourseold
+  vars:
+    env: "production"
+
+- hosts: tag_app_discourse:&tag_env_staging
+  remote_user: ubuntu
+  sudo: yes
+  roles:
+   - discourseold
+  vars:
+    env: "staging"
+
+
 - hosts: tag_app_ansible
   remote_user: ubuntu
   sudo: yes
