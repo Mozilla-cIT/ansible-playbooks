@@ -1,0 +1,18 @@
+---
+- tasks:
+
+  debug: msg="Updating old discourse instances"
+
+  name: check if the AMI/LC script exists
+  stat: path=/home/ubuntu/updatediscourse.sh
+  register: check_updatescript
+
+  name: rebuild container
+  command: /var/discourse/launcher rebuild app
+  sudo: true
+  when: check_updatescript
+
+  name: AMI/LC update
+  command: /home/ubuntu/updatediscourse.sh {{ item.autoscalinggroup }} # figure out a way to grab the ASG from the server
+  sudo: true
+  when: check_updatescript
