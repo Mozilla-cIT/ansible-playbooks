@@ -14,6 +14,8 @@
 - name: reload ansible_local
   setup: filter=ansible_local
 
+- debug: msg="{{ ansible_local.iam_facts.AccessKeyId }}"
+
 - debug: msg="Updating old discourse instances"
 
 - name: rebuild container
