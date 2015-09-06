@@ -21,5 +21,5 @@
   sudo: true
 
 - name: make ami
-  local_action: ec2_ami aws_access_key="{{ ansible_local.iam_facts.AccessKeyId }}" aws_secret_key="{{ ansible_local.iam_facts.SecretAccessKey }}" instance_id="{{ ansible_local.ec2_facts.instance_id }}" wait=yes no_reboot=yes name=csa-discourse-{{ansible_date_time.epoch}}
+  local_action: ec2_ami aws_access_key="{{ ansible_local.iam_facts.AccessKeyId }}" aws_secret_key="{{ ansible_local.iam_facts.SecretAccessKey }}" region=us-east-1 instance_id="{{ ansible_local.ec2_facts.instance_id }}" wait=yes no_reboot=yes name=csa-discourse-{{ansible_date_time.epoch}}
   register: instance
