@@ -7,6 +7,8 @@
   stat: path=/home/ubuntu/updatediscourse.sh
   register: check_updatescript
 
+  #copy script
+
   name: rebuild container
   command: /var/discourse/launcher rebuild app
   sudo: true
