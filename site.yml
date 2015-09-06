@@ -28,7 +28,7 @@
   vars:
     env: "staging"
 
-- hosts: tag_app_discourse:&tag_env_production
+- hosts: tag_app_discourseold:&tag_env_production
   remote_user: ubuntu
   sudo: yes
   roles:
@@ -36,7 +36,7 @@
   vars:
     env: "production"
 
-- hosts: tag_app_discourse:&tag_env_staging
+- hosts: tag_app_discourseold:&tag_env_staging
   remote_user: ubuntu
   sudo: yes
   roles:

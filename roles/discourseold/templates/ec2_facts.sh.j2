@@ -1,0 +1,11 @@
+#!/bin/bash
+
+instance_id=` curl http://169.254.169.254/latest/meta-data/instance-id`
+instance_type=`curl http://169.254.169.254/latest/meta-data/instance-type`
+
+cat <<EOF
+{
+  "instance_id": "$instance_id",
+  "instance_type": "$instance_type"
+}
+EOF

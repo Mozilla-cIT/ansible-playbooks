@@ -1,20 +1,33 @@
 ---
 - tasks:
 
+  name: ensure custom facts directory exists
+  file:
+    path: /etc/ansible/facts.d
+    recurse: yes
+    state: directory
+
+  name: install custom fact module for iam
+  template: src=iam_facts.sh.j2 dest=/etc/ansible/facts.d/iam_facts.fact mode=0755
+
+  name: install custom fact module for ec2
+  template: src=ec2_facts.sh.j2 dest=/etc/ansible/facts.d/ec2_facts.fact mode=0755
+
+  name: reload ansible_local
+  setup: filter=ansible_local
+
   debug: msg="Updating old discourse instances"
 
-  name: check if the AMI/LC script exists
-  stat: path=/home/ubuntu/updatediscourse.sh
-  register: check_updatescript
-
-  #copy script
-
   name: rebuild container
-  command: /var/discourse/launcher rebuild app
+  command: echo notyet
   sudo: true
-  when: check_updatescript
 
-  name: AMI/LC update
-  command: /home/ubuntu/updatediscourse.sh {{ item.autoscalinggroup }} # figure out a way to grab the ASG from the server
-  sudo: true
-  when: check_updatescript
+  name: make ami
+  ec2_ami:
+    aws_access_key: {{ ansible_local.iam_facts.AccessKeyId }}
+    aws_secret_key: {{ ansible_local.iam_facts.SecretAccessKey }}
+    instance_id: {{ ansible_local.ec2_facts.instance_id }}
+    wait: yes
+    no_reboot: yes
+    name: csa-discourse-{{ansible_date_time.epoch}}
+  register: instance
