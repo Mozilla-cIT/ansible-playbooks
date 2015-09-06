@@ -10,3 +10,4 @@
   command: /var/discourse/launcher rebuild {{item.name}}
   sudo: true
   with_items: discourse_instances
+  no_log: True
