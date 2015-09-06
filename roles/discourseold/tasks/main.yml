@@ -1,6 +1,4 @@
 ---
-- tasks:
-
   name: ensure custom facts directory exists
   file:
     path: /etc/ansible/facts.d
