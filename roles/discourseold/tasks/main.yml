@@ -1,26 +1,26 @@
 ---
-  name: ensure custom facts directory exists
+- name: ensure custom facts directory exists
   file:
     path: /etc/ansible/facts.d
     recurse: yes
     state: directory
 
-  name: install custom fact module for iam
+- name: install custom fact module for iam
   template: src=iam_facts.sh.j2 dest=/etc/ansible/facts.d/iam_facts.fact mode=0755
 
-  name: install custom fact module for ec2
+- name: install custom fact module for ec2
   template: src=ec2_facts.sh.j2 dest=/etc/ansible/facts.d/ec2_facts.fact mode=0755
 
-  name: reload ansible_local
+- name: reload ansible_local
   setup: filter=ansible_local
 
-  debug: msg="Updating old discourse instances"
+- debug: msg="Updating old discourse instances"
 
-  name: rebuild container
+- name: rebuild container
   command: echo notyet
   sudo: true
 
-  name: make ami
+- name: make ami
   ec2_ami:
     aws_access_key: "{{ ansible_local.iam_facts.AccessKeyId }}"
     aws_secret_key: "{{ ansible_local.iam_facts.SecretAccessKey }}"
